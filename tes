@@ -1,0 +1,120 @@
+// App.js
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Container,
+  Navbar,
+  Nav,
+  Form,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
+
+function App() {
+  const [panjang, setPanjang] = useState("");
+  const [lebar, setLebar] = useState("");
+  const [tinggi, setTinggi] = useState("");
+  const [luas, setLuas] = useState("");
+
+  const hitungLuasPermukaan = () => {
+    const p = parseFloat(panjang);
+    const l = parseFloat(lebar);
+    const t = parseFloat(tinggi);
+    if (!isNaN(p) && !isNaN(l) && !isNaN(t)) {
+      const hasil = 2 * ((p * l) + (l * t) + (p * t));
+      setLuas(hasil.toFixed(2));
+    } else {
+      setLuas("Input tidak valid");
+    }
+  };
+
+  return (
+    <div>
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">pbwl-uas0036</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#nim">NIM</Nav.Link>
+            <Nav.Link href="#home">HOME</Nav.Link>
+            <Nav.Link href="#about">ABOUT</Nav.Link>
+            <Nav.Link href="#contact">CONTACT US</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <Container className="text-center my-4">
+        <h2>Judul Website</h2>
+      </Container>
+
+      <Container>
+        <Row className="justify-content-end">
+          <Col md={2} className="text-end">
+            <div
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: "50%",
+                border: "2px solid black",
+                textAlign: "center",
+                lineHeight: "80px",
+                fontWeight: "bold",
+              }}
+            >
+              Logo
+            </div>
+          </Col>
+        </Row>
+
+        <h4 className="mt-4">Balok</h4>
+
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Panjang</Form.Label>
+            <Form.Control
+              type="number"
+              value={panjang}
+              onChange={(e) => setPanjang(e.target.value)}
+              placeholder="Masukkan panjang"
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Lebar</Form.Label>
+            <Form.Control
+              type="number"
+              value={lebar}
+              onChange={(e) => setLebar(e.target.value)}
+              placeholder="Masukkan lebar"
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Tinggi</Form.Label>
+            <Form.Control
+              type="number"
+              value={tinggi}
+              onChange={(e) => setTinggi(e.target.value)}
+              placeholder="Masukkan tinggi"
+            />
+          </Form.Group>
+
+          <Button variant="primary" onClick={hitungLuasPermukaan}>
+            Hitung
+          </Button>
+
+          <Form.Group className="mt-3">
+            <Form.Label>Luas Permukaan</Form.Label>
+            <Form.Control value={luas} readOnly />
+          </Form.Group>
+        </Form>
+      </Container>
+
+      <footer className="text-center mt-5 mb-3">
+        <p>Nama @copyright 2025</p>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
